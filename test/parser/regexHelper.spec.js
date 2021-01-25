@@ -103,6 +103,24 @@ describe("Parser.RegexHelper namespace", () => {
       assert.equal(res, "", "Illegal string backtick");
     });
 
+    it("Staring did not start from the beginning", () => {
+      var data = "false,`hello world`,1,";
+      var res = RegexHelper.getStringFromTupleString(data);
+      assert.equal(res, "", "Illegal string backtick");
+    });
+
+    it("Testing string escape", () => {
+      var data = "`something %2560some%60thing%60`,false,1"
+      var res = RegexHelper.getStringFromTupleString(data);
+      assert.equal(res, "`something %60some`thing``", "Illegal string backtick");
+    });
+
+    it("Testing invalid string escape character", () => {
+      var data = "`something %12 something`,false,1"
+      var res = RegexHelper.getStringFromTupleString(data);
+      assert.equal(res, "", "Illegal string backtick");
+    });
+
   });
 
   describe("RegexHelper.getBooleanFromTupleString() method", () => {
