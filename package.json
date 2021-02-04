@@ -1,5 +1,5 @@
 {
-  "name": "database",
+  "name": "pandb",
   "version": "1.0.0",
   "description": "A typescript database without using JSON file.",
   "main": "app.js",

@@ -1,8 +1,8 @@
-import {Field} from "../model/internal/Field";
-import {Table} from "../model/internal/Table";
-import {Schema} from "../model/internal/Schema";
-import {Tuple} from "../model/internal/Tuple";
-import {Type} from "../model/internal/Type";
+import {Field} from "../model/Field";
+import {Table} from "../model/Table";
+import {Schema} from "../model/Schema";
+import {Tuple} from "../model/Tuple";
+import {Type} from "../model/Type";
 import {RegexHelper} from "./RegexHelper";
 
 export class Parser {
@@ -18,7 +18,7 @@ export class Parser {
   }
 
   private _tables:Table[] = [];
-  private _lineCounter:number = 1;
+  private _lineCounter:number = 1; // for error printing
 
   private lineToInstructionConverter(line:string):void {
     line = line.trim();
@@ -54,8 +54,11 @@ export class Parser {
     // this loop is going through all the fields of the last table (the current 
     // table) in the tables array
     for (var field of this._tables[this._tables.length-1].schema.fields) {
-      var res:string = "";
-      switch(field.type) {        
+      var res:string|null = null;
+
+      var deleteOffset:number = 1; // how many chars to remove after the actual parser result
+
+      switch(field.type) {
         case Type.PRIMARY_KEY: {
           res = RegexHelper.getNumberFromTupleString(line);
           break;
@@ -66,6 +69,7 @@ export class Parser {
         }
         case Type.STRING: {
           res = RegexHelper.getStringFromTupleString(line);
+          deleteOffset = 3;
           break;
         }
         case Type.BOOLEAN: {
@@ -75,13 +79,15 @@ export class Parser {
         default: break;
       }
 
-      if(res.length != 0) {
-        line = line.slice(res.length+1);
+      if(res !== null) {
+        // deleting the part which has been just used.
+        // Also the following comma, and in case of a string the ` and the comma (deleteOffset)
+        line = line.slice(res.length+deleteOffset);
         tuple.addValue(res);
       }
       else throw {
         name: "Parser Error",
-        message: `invalid ${field.type} date on line ${this._lineCounter}`
+        message: `invalid ${field.type} data on line ${this._lineCounter}`
       };
 
     }
