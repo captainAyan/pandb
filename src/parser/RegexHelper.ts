@@ -33,7 +33,6 @@ export class RegexHelper {
         }
       }
 
-      // return '`'+d+'`';
       return d;
     }
     else return null;

@@ -43,7 +43,13 @@ describe("Model.Table class", () => {
 
     expect(()=>{
       table.addTuple(tuple);
-    }).to.throw("Tuple does not match with table schema");
+    }).to.throw("tuple does not match with table schema");
+  });
+
+  it("Create a Table with empty table name", () => {
+    expect(()=>{
+      var table = new Table("", schema);
+    }).to.throw("table name cannot be empty");
   });
 
 });

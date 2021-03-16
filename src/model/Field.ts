@@ -11,9 +11,17 @@ export class Field {
   constructor(type:string, name:string) {
     if(Field.validTypes.includes(type)) {
       this._type = type;
-      this._name = name;
+
+      if (name == "") throw {
+        name: "Parser Error",
+        message: "field name cannot be empty"
+      }
+      else this._name = name;
     }
-    else throw new Error("Invalid field type")
+    else throw {
+      name: "Parser Error",
+      message: "invalid field type"
+    };
   }
 
   get type():string { return this._type; }

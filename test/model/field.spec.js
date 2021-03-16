@@ -14,8 +14,13 @@ describe("Model.Field class", () => {
   it("Create Field instance with incorrect type", () => {
     expect(()=>{
       new Field("wrong_type", "field_name")
-    }).to.throw("Invalid field type");
+    }).to.throw("invalid field type");
+  });
 
+  it("Create Field instance with empty name", () => {
+    expect(()=>{
+      new Field(Type.STRING, "")
+    }).to.throw("ield name cannot be empty");
   });
 
 });
