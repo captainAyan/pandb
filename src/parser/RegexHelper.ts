@@ -15,8 +15,8 @@ export class RegexHelper {
         if(d[i] == "%") {
           if(i+2 >= d.length) return null;  // since escape character codes are 2 digit alpha-numeric
           else {
-            var escape_string:string = d.substr(i, 3);
-            switch(escape_string) {
+            var escapeString:string = d.substr(i, 3);
+            switch(escapeString) {
               case "%60": {
                 d = d.substring(0, i) + "`" + d.substring(i + 1);
                 d = d.slice(0, i+1) + d.slice(i+3, d.length);
