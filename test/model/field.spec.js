@@ -20,7 +20,7 @@ describe("Model.Field class", () => {
   it("Create Field instance with empty name", () => {
     expect(()=>{
       new Field(Type.STRING, "")
-    }).to.throw("ield name cannot be empty");
+    }).to.throw("field name cannot be empty");
   });
 
 });

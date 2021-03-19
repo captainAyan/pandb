@@ -19,7 +19,7 @@ describe("Model.Table class", () => {
     var table = new Table(name, schema);
     var tuple = new Tuple();
     tuple.addValue("1");
-    tuple.addValue("`John Doe`");
+    tuple.addValue("John Doe");
     tuple.addValue("10");
     tuple.addValue("false");
     table.addTuple(tuple);
@@ -28,7 +28,7 @@ describe("Model.Table class", () => {
     assert.equal(table.schema, schema, "Correct Table Schema");
 
     assert.equal(table.tuples[0].values[0], "1", "Correct value in id column")
-    assert.equal(table.tuples[0].values[1], "`John Doe`", "Correct value in name column")
+    assert.equal(table.tuples[0].values[1], "John Doe", "Correct value in name column")
     assert.equal(table.tuples[0].values[2], "10", "Correct value in likes column")
     assert.equal(table.tuples[0].values[3], "false", "Correct value in is_admin column")
   });
@@ -37,7 +37,7 @@ describe("Model.Table class", () => {
     var table = new Table(name, schema);
     var tuple = new Tuple();
     tuple.addValue("abc");
-    tuple.addValue("`John Doe`");
+    tuple.addValue("John Doe");
     tuple.addValue("10");
     tuple.addValue("false");
 

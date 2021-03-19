@@ -2,7 +2,7 @@ const {assert} = require('chai');
 
 const {RegexHelper} = require("../../dist/parser/RegexHelper");
 
-describe("Parser.RegexHelper namespace", () => {
+describe("Parser.RegexHelper class", () => {
 
   describe("RegexHelper.getNumberFromTupleString() method", () => {
     
