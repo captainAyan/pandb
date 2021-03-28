@@ -27,8 +27,8 @@ export class Schema {
     for(var i:number=0; i<tuple.values.length; i++) {
       switch(schema.fields[i].type) {
         case Type.PRIMARY_KEY: {
-          let value:number = parseFloat(tuple.values[i]);
-          if(isNaN(value)) return false;
+          let value:number = parseInt(tuple.values[i]);
+          if(isNaN(value) || !(value>0)) return false;
           break;
         }
         case Type.NUMBER: {

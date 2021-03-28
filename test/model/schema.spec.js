@@ -50,6 +50,16 @@ describe("Model.Schema class", () => {
       assert.equal(Schema.validateTupleToSchema(tuple, schema), false, "Invalid primary key");
     });
 
+    it("Invalid negative primary key data tuple", () => {
+      let tuple = new Tuple();
+      tuple.addValue("-1");
+      tuple.addValue('`abc`');
+      tuple.addValue("12");
+      tuple.addValue("false");
+      console.log(Schema.validateTupleToSchema(tuple, schema));
+      assert.equal(Schema.validateTupleToSchema(tuple, schema), false, "Invalid primary key");
+    });
+
     it("Invalid string data tuple", () => {
       let tuple = new Tuple();
       tuple.addValue("one");

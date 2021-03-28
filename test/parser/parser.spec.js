@@ -11,7 +11,7 @@ describe("Parser.Parser class", () => {
     (3,\`something 2\`,false,)
     POSTS::(PK:id,NUM:user_id,STR:message)
     (1,3,\`something 3\`,)
-    (-2,2,\`something 4\`,)
+    (2,2,\`something 4\`,)
     (3,3,\`something 5\`,)`;
 
     var tables  = (new Parser()).start(data);
