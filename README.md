@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center">PanDB 🍳</h1>
+  <h1 align="center">PanDB 🍳 [⚠️ Discontinued]</h1>
 
   <p align="center">
     PanDB is an embedded database written in TypeScript
